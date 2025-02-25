@@ -153,6 +153,19 @@ COPY "pgsodium"."key" ("id", "status", "created", "expires", "key_type", "key_id
 COPY "public"."clients" ("id", "created_at", "firstName", "lastName", "email", "age") FROM stdin;
 1	2025-02-25 15:58:43.572191+00	Jon	Doe	jon@mail.com	22
 2	2025-02-25 15:59:08.294901+00	Joan	Doe	joan@email.com	44
+3	2025-02-25 18:42:16.766277+00	I know	is public	that@this.data	1
+4	2025-02-25 18:42:47.502941+00	For sure 	private	project@should.be	44
+\.
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "public"."posts" ("id", "created_at", "author", "post", "tags") FROM stdin;
+1	2025-02-25 18:46:58.961353+00	1	TypeScript support\nsupabase-js has TypeScript support for type inference, autocompletion, type-safe queries, and more.\n\nWith TypeScript, supabase-js detects things like not null constraints and generated columns. Nullable columns are typed as T | null when you select the column. Generated columns will show a type error when you insert to it.\n\nsupabase-js also detects relationships between tables. A referenced table with one-to-many relationship is typed as T[]. Likewise, a referenced table with many-to-one relationship is typed as T | null.\n\nGenerating TypeScript Types#\nYou can use the Supabase CLI to generate the types. You can also generate the types from the dashboard.\n\nTerminal\n\nsupabase gen types typescript --project-id abcdefghijklmnopqrst > database.types.ts\nThese types are generated from your database schema. Given a table public.movies, the generated types will look like:	['some','nice','tags']
+2	2025-02-25 18:47:46.264386+00	2	The auth methods can be accessed via the supabase.auth namespace.\n\nBy default, the supabase client sets persistSession to true and attempts to store the session in local storage. When using the supabase client in an environment that doesn't support local storage, you might notice the following warning message being logged:\n\nNo storage option exists to persist the session, which may result in unexpected behavior when using auth. If you want to set persistSession to true, please provide a storage option or you may set persistSession to false to disable this warning.\n\nThis warning message can be safely ignored if you're not using auth on the server-side. If you are using auth and you want to set persistSession to true, you will need to provide a custom storage implementation that follows this interface.\n\nAny email links and one-time passwords (OTPs) sent have a default expiry of 24 hours. We have the following rate limits in place to guard against brute force attacks.\n\nThe expiry of an access token can be set in the "JWT expiry limit" field in your project's auth settings. A refresh token never expires and can only be used once.\n\nCreate auth client\nCreate auth client (server-side)\n	['tags','are','boring']
+3	2025-02-25 18:48:17.39452+00	3	Create a new user\nCreates a new user.\n\nBy default, the user needs to verify their email address before logging in. To turn this off, disable Confirm email in your project.\nConfirm email determines if users need to confirm their email address after signing up.\nIf Confirm email is enabled, a user is returned but session is null.\nIf Confirm email is disabled, both a user and a session are returned.\nWhen the user confirms their email address, they are redirected to the SITE_URL by default. You can modify your SITE_URL or add additional redirect URLs in your project.\nIf signUp() is called for an existing confirmed user:\nWhen both Confirm email and Confirm phone (even when phone provider is disabled) are enabled in your project, an obfuscated/fake user object is returned.\nWhen either Confirm email or Confirm phone (even when phone provider is disabled) is disabled, the error message, User already registered is returned.\nTo fetch the currently logged-in user, refer to getUser().\nParameters	[]
 \.
 
 
@@ -214,7 +227,14 @@ SELECT pg_catalog.setval('"pgsodium"."key_key_id_seq"', 1, false);
 -- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."clients_id_seq"', 2, true);
+SELECT pg_catalog.setval('"public"."clients_id_seq"', 4, true);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"public"."posts_id_seq"', 3, true);
 
 
 --
