@@ -107,6 +107,14 @@ COPY "auth"."oauth_authorizations" ("id", "authorization_id", "client_id", "user
 
 
 --
+-- Data for Name: oauth_client_states; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
+--
+
+COPY "auth"."oauth_client_states" ("id", "provider_type", "code_verifier", "created_at") FROM stdin;
+\.
+
+
+--
 -- Data for Name: oauth_consents; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
